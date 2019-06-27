@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    th {
+      cursor: pointer;
+    }
+
+    th:hover {
+      background: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Возраст</th>
+        <th data-type="string">Имя</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Петя</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Женя</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Маша</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Илья</td>
+      </tr>
+    </tbody>
+  </table>
+
+   <script>
+    let grid = document.getElementById("grid");
+    grid.addEventListener('click',function(e){
+      let target = e.target;
+      let titleNumber = target.getAttribute("data-type");
+     
+        console.log(target.cellIndex);
+        let indexCell = target.cellIndex;
+       
+        let x = grid.tBodies[0].children;
+        let arr = Array.prototype.slice.call(x);
+        if(titleNumber == "number"){
+        arr.sort(function(a,b){
+         return a.children[0].innerHTML-b.children[0].innerHTML; 
+        });
+        }
+        
+       
+         
+         for(let i=0; i<arr.length; i++){
+          arr[i].parentNode.appendChild(arr[i]);  
+         }
+        
+       
+    });
+    
+    console.log(titleNumber) 
+    
+    
+    
+  </script>
+
+</body>
+
+</html>
